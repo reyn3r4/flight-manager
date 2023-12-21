@@ -81,8 +81,7 @@ const App= () => {
   const handleDelete = async (flightId) => {
     try {
       await axios.delete(`http://localhost:8000/flights/${flightId}`);
-      // Lógica adicional después de la eliminación (recargar vuelos, etc.)
-      // ...
+      // Reload on callback
     } catch (error) {
       console.error('Error deleting flight:', error);
       alert('Error deleting flight. Please try again.');
@@ -101,9 +100,9 @@ const App= () => {
           onUpdate={handleFlightUpdate}
         />
         <Routes>
-          <Route path="/" element={<Navigate to={`/flights?page=${currentPage}`} replace/>} />
+          {/*Route path="/" element={<Navigate to={`/flights?page=${currentPage}`} replace/>} */}
           <Route
-            path={`/flights?page=${currentPage}`}
+            path="/"
             element={<FlightList flights={flights} onDelete={handleDelete} onUpdate={handleFlightUpdate}/>}
             
           />
